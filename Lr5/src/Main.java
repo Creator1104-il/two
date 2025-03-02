@@ -14,8 +14,7 @@ class Reader {
     public void takeBook(int numberOfBooks) {
         System.out.println(Polnoe_name + " взял " + numberOfBooks + " книги.");
     }
-
-    public void takeBook(String[] bookNames) {
+    public void takeBook(String... bookNames) {
         System.out.print(Polnoe_name + " взял книги: ");
         for (int i = 0; i < bookNames.length; i++) {
             System.out.print(bookNames[i]);
@@ -25,12 +24,10 @@ class Reader {
         }
         System.out.println(".");
     }
-
     public void returnBook(int numberOfBooks) {
         System.out.println(Polnoe_name + " вернул " + numberOfBooks + " книги.");
     }
-
-    public void returnBook(String[] bookNames) {
+    public void returnBook(String... bookNames) {
         System.out.print(Polnoe_name + " вернул книги: ");
         for (int i = 0; i < bookNames.length; i++) {
             System.out.print(bookNames[i]);
@@ -39,6 +36,9 @@ class Reader {
             }
         }
         System.out.println(".");
+    }
+    public void displayInfo() {
+        System.out.println("ФИО: " + Polnoe_name + ", Номер билета: " + nomer_bileta + ", Факультет: " + facultet + ", Дата рождения: " + den_roschedia + ", Телефон: " + nomer_telefona);
     }
 }
 public class Main {
@@ -49,14 +49,13 @@ public class Main {
         readers[2] = new Reader("Сидоров С. С.", "0003", "Химия", "03.03.2002", "1122334455");
         readers[3] = new Reader("Кузнецова А. А.", "0004", "Биология", "04.04.2003", "2233445566");
         readers[4] = new Reader("Смирнов П. П.", "0005", "История", "05.05.2004", "3344556677");
-
-        for (int i = 0; i < 5; i++) {
-            System.out.println(readers[i]);
+        System.out.println("Список читателей:");
+        for (Reader reader : readers) {
+            reader.displayInfo();
         }
-
         readers[0].takeBook(3);
-        readers[0].takeBook(new String[]{"Приключения", "Словарь", "Энциклопедия"});
-        readers[0].returnBook(2);
-        readers[0].returnBook(new String[]{"Приключения",  "Энциклопедия"});
+        readers[0].takeBook("Приключения", "Словарь", "Энциклопедия");
+        readers[0].returnBook(3);
+        readers[0].returnBook("Приключения", "Словарь", "Энциклопедия");
     }
 }
