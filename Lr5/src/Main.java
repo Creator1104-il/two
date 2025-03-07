@@ -53,9 +53,12 @@ public class Main {
         for (Reader reader : readers) {
             reader.displayInfo();
         }
-        readers[0].takeBook(3);
-        readers[0].takeBook("Приключения", "Словарь", "Энциклопедия");
-        readers[0].returnBook(3);
-        readers[0].returnBook("Приключения", "Словарь", "Энциклопедия");
+        System.out.println(" ");
+        for(int i = 0;i< readers.length;i++) {
+            readers[i].takeBook(3);
+            readers[i].takeBook("Приключения", "Словарь", "Энциклопедия");
+            readers[i].returnBook(3);
+            readers[i].returnBook("Приключения", "Словарь", "Энциклопедия");
+        }
     }
 }
