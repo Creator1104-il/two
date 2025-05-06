@@ -1,0 +1,33 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) {
+        String inputFilePath = "input_code.txt"; // Путь к исходному файлу
+        String outputFilePath = "output_code.txt"; // Путь к выходному файлу
+
+        // Регулярные выражения для удаления комментариев
+        String singleLineComment = "//.*"; // Однострочные комментарии
+        String multiLineComment = "/\\*.*?\\*/"; // Многострочные комментарии
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(inputFilePath));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath))) {
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                // Удаляем однострочные комментарии
+                line = line.replaceAll(singleLineComment, "");
+                // Удаляем многострочные комментарии
+                line = line.replaceAll(multiLineComment, "");
+                // Записываем очищенную строку в выходной файл
+                writer.write(line.trim()); // Обрезаем пробелы в начале и конце
+                writer.newLine(); // Переход на новую строку
+            }
+        } catch (IOException e) {
+            e.printStackTrace(); // Обработка ошибок
+        }
+    }
+}
